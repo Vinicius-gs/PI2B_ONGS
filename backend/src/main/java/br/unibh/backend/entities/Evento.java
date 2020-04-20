@@ -20,20 +20,23 @@ public class Evento {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long Id_envento;
 	
-	@Column(name = "nome_evento",nullable = false)
+	@Column(name = "nome_evento",length=30, nullable = false)
 	private String nome;
 	
 	@Column(name = "dataHora_evento",nullable = false)
 	private Date data_hora;
 	
+	@Column(name = "descricao", length=255 , nullable = false)
+	private String descricao; 
+	
 	@Column(name = "local_evento",nullable = false)
 	private String local;
 	
-	@Column(name = "ongs_evento",nullable = false)
-	private CadastroOng ongs;
+	//@Column(name = "ongs_evento",nullable = false)
+	//private CadastroOng ongs;
 	
-	@Column(name = "pessoas_evento",nullable = false)
-	private Cadastro participante;
+	//@Column(name = "pessoas_evento",nullable = false)
+	//private Cadastro participante;
 	
 	@Column(name = "quantPessoas_evento",nullable = false)
 	private int quant_participante;
@@ -68,6 +71,14 @@ public class Evento {
 		this.data_hora = data_hora;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public String getLocal() {
 		return local;
 	}
@@ -76,7 +87,7 @@ public class Evento {
 		this.local = local;
 	}
 
-	public CadastroOng getOngs() {
+	/*public CadastroOng getOngs() {
 		return ongs;
 	}
 
@@ -84,19 +95,19 @@ public class Evento {
 		this.ongs = ongs;
 	}
 
-	public Cadastro getparticipante() {
+	public Cadastro getParticipante() {
 		return participante;
 	}
 
-	public void setPessoas(Cadastro participante) {
+	public void setParticipante(Cadastro participante) {
 		this.participante = participante;
-	}
+	}*/
 
-	public int getQuant_pessoas(){
+	public int getQuant_participante() {
 		return quant_participante;
 	}
 
-	public void setQuant_pessoas(int quant_participante) {
+	public void setQuant_participante(int quant_participante) {
 		this.quant_participante = quant_participante;
 	}
 
@@ -108,18 +119,18 @@ public class Evento {
 		this.espaco = espaco;
 	}
 	
-	Scanner entrada = new Scanner (System.in);
-	
+
 	// Determina a quantidade Maxima de Pessoas no evento
 	public int qntMaximaDePessoas(int qntMaxima) {
+		Scanner entrada = new Scanner (System.in);
 		int qntPessoasNoLocal;
 		System.out.println("Quantida máxima de pessoas no evento");
 		qntPessoasNoLocal = entrada.nextInt();
 		
-		if (this.getQuant_pessoas() < qntPessoasNoLocal) {
-			this.setQuant_pessoas(1);
-		}else if(this.getQuant_pessoas() >= qntPessoasNoLocal) {
-			System.out.println("O evento da ONG"+this.getOngs() + "no local"+ this.getLocal() +" está cheio." );
+		if (this.getQuant_participante() < qntPessoasNoLocal) {
+			this.setQuant_participante(1);
+		}else if(this.getQuant_participante() >= qntPessoasNoLocal) {
+			System.out.println("O evento da Ong no local"+ this.getLocal() +" está cheio." );
 		}
 		return qntMaxima;
 	}
@@ -127,7 +138,7 @@ public class Evento {
 	// Status do evento
 	public String statusEvento( String statusEvento ) {
 		System.out.println("Nome do evento " + this.getNome());
-		System.out.println("Quantidade de pessoas " + this.getQuant_pessoas());
+		System.out.println("Quantidade de pessoas " + this.getQuant_participante());
 		System.out.println("Data " + getData_hora());
 		System.out.println("Local " + getLocal());
 		return statusEvento;

@@ -1,15 +1,13 @@
 package br.unibh.backend.entities;
 
-
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
 
 
 @Entity
@@ -42,17 +40,8 @@ public class CadastroOng {
 	@Column(nullable = false)
 	private String password;
 	
-	/*@OneToMany(mappedBy = "CadastroOng")
-	private Set<Cadastro> Cadastros;
-
-	public Set<Cadastro> getCadastro() {
-		return Cadastros;
-	}
-
-	public void setCadastro(Set<Cadastro> cadastro) {
-		Cadastros = cadastro;
-	}*/
-
+	@ManyToMany(mappedBy="Cadastro")
+	
 	public Long getId_ong() {
 		return id_ong;
 	}
