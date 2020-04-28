@@ -1,8 +1,8 @@
 package br.unibh.backend.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +14,18 @@ import javax.persistence.Table;
 @Table(name = "tb_evento")
 public class Evento {
 	
-	//Atributos
+
+	public Evento(Long id_envento, String nome, Date data_hora, String descricao, String local, int quant_participante,
+			int espaco) {
+		this.nome = nome;
+		this.data_hora = data_hora;
+		this.descricao = descricao;
+		this.local = local;
+		this.quant_participante = quant_participante;
+		this.espaco = espaco;
+	}
 	
+	//Atributos
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long Id_envento;
@@ -26,25 +36,18 @@ public class Evento {
 	@Column(name = "dataHora_evento",nullable = false)
 	private Date data_hora;
 	
-	@Column(name = "descricao", length=255 , nullable = false)
+	@Column(name = "descricao_evento", length=255 , nullable = false)
 	private String descricao; 
 	
 	@Column(name = "local_evento",nullable = false)
 	private String local;
-	
-	//@Column(name = "ongs_evento",nullable = false)
-	//private CadastroOng ongs;
-	
-	//@Column(name = "pessoas_evento",nullable = false)
-	//private Cadastro participante;
-	
+		
 	@Column(name = "quantPessoas_evento",nullable = false)
 	private int quant_participante;
 	
 	@Column(name = "espaco_evento",nullable = false)
-	private int espaco;
+	private int espaco; // Quantidade maxima de participantes no evento.
 
-	
 	//Métodos Get e Set
 	
 	public Long getId_envento() {
@@ -87,22 +90,6 @@ public class Evento {
 		this.local = local;
 	}
 
-	/*public CadastroOng getOngs() {
-		return ongs;
-	}
-
-	public void setOngs(CadastroOng ongs) {
-		this.ongs = ongs;
-	}
-
-	public Cadastro getParticipante() {
-		return participante;
-	}
-
-	public void setParticipante(Cadastro participante) {
-		this.participante = participante;
-	}*/
-
 	public int getQuant_participante() {
 		return quant_participante;
 	}
@@ -118,10 +105,10 @@ public class Evento {
 	public void setEspaco(int espaco) {
 		this.espaco = espaco;
 	}
-	
-
+		
 	// Determina a quantidade Maxima de Pessoas no evento
-	public int qntMaximaDePessoas(int qntMaxima) {
+	
+	public int qntMaximaDePessoas(int qntMaxima) {	
 		Scanner entrada = new Scanner (System.in);
 		int qntPessoasNoLocal;
 		System.out.println("Quantida máxima de pessoas no evento");
@@ -142,6 +129,14 @@ public class Evento {
 		System.out.println("Data " + getData_hora());
 		System.out.println("Local " + getLocal());
 		return statusEvento;
+	}
+	
+	public void addParticipante() {
+		ArrayList<Cadastro> addParticipante = new ArrayList<Cadastro>();
+		for (int i = 0; i < this.getEspaco(); i++) {
+			Cadastro participante = new Cadastro();
+			addParticipante.add(participante);
+		}
 	}
 		
 }

@@ -1,5 +1,6 @@
 package br.unibh.backend.entities;
 
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -14,7 +15,17 @@ import javax.persistence.Table;
 @Table(name = "tb_cadastro_ong")
 public class CadastroOng {
 
-	
+	public CadastroOng(Long id_ong, String nome, String cnpj, String cpf, String endereco, String email,
+			String telefone, String password) {
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.cpf = cpf;
+		this.endereco = endereco;
+		this.email = email;
+		this.telefone = telefone;
+		this.password = password;
+	}
+
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id_ong;

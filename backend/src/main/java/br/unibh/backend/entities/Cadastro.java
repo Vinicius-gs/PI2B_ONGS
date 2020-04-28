@@ -17,8 +17,7 @@ import javax.persistence.JoinColumn;
 public class Cadastro {
 	
 
-	public Cadastro(String nome, String endereco,String cpf, String email, String telefone, String password ) {
-		
+	public Cadastro() {
 	}
 	
 	@Id 
