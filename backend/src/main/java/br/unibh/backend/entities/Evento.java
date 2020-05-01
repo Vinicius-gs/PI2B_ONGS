@@ -4,18 +4,31 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_evento")
-public class Evento {
+public class Evento  {
 	
-
-	public Evento(Long id_envento, String nome, Date data_hora, String descricao, String local, int quant_participante,
+    @EmbeddedId
+    Eventokey id;
+	
+    @ManyToOne
+    @MapsId("id_participante")
+    @JoinColumn(name = "id_participante")
+    Participante participante;
+ 
+    @ManyToOne
+    @MapsId("id_ong")
+    @JoinColumn(name = "id_ong")
+    Ong ong;
+	
+	public Evento(String nome, Date data_hora, String descricao, String local, int quant_participante,
 			int espaco) {
 		this.nome = nome;
 		this.data_hora = data_hora;
@@ -26,10 +39,7 @@ public class Evento {
 	}
 	
 	//Atributos
-	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private Long Id_envento;
-	
+    
 	@Column(name = "nome_evento",length=30, nullable = false)
 	private String nome;
 	
@@ -50,14 +60,6 @@ public class Evento {
 
 	//Métodos Get e Set
 	
-	public Long getId_envento() {
-		return Id_envento;
-	}
-
-	public void setId_envento(Long id_envento) {
-		Id_envento = id_envento;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -132,9 +134,9 @@ public class Evento {
 	}
 	
 	public void addParticipante() {
-		ArrayList<Cadastro> addParticipante = new ArrayList<Cadastro>();
+		ArrayList<Participante> addParticipante = new ArrayList<Participante>();
 		for (int i = 0; i < this.getEspaco(); i++) {
-			Cadastro participante = new Cadastro();
+			Participante participante = new Participante();
 			addParticipante.add(participante);
 		}
 	}

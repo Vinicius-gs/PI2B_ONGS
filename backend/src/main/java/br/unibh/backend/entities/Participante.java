@@ -1,28 +1,27 @@
 package br.unibh.backend.entities;
 
 
-import javax.persistence.CascadeType;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "tb_cadastro")
-public class Cadastro {
+@Table(name = "tb_participante")
+public class Participante {
 	
 
-	public Cadastro() {
+	public Participante() {
 	}
+	
 	
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)	
-	private Long id;
+	private Long id_participante;
 	
 	@Column(nullable = false, length = 255)
 	private String nome;
@@ -42,19 +41,9 @@ public class Cadastro {
 	@Column(nullable = false)
 	private String password;
 	
-	@ManyToMany (cascade = CascadeType.ALL)
-	 @JoinTable(name="CadastroOng_Cadastro", 
-	 joinColumns={@JoinColumn(name="id_ong")},
-	 inverseJoinColumns= {@JoinColumn(name="id")})
+	@OneToMany(mappedBy = "Participante")
+	Set<Evento> Evento;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}

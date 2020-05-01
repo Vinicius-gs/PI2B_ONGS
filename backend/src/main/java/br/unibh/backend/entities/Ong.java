@@ -1,21 +1,23 @@
 package br.unibh.backend.entities;
 
 
+import java.util.Set;
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tb_cadastro_ong")
-public class CadastroOng {
+@Table(name = "tb_ong")
+public class Ong {
 
-	public CadastroOng(Long id_ong, String nome, String cnpj, String cpf, String endereco, String email,
+	public Ong(String nome, String cnpj, String cpf, String endereco, String email,
 			String telefone, String password) {
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -25,7 +27,7 @@ public class CadastroOng {
 		this.telefone = telefone;
 		this.password = password;
 	}
-
+	
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id_ong;
@@ -51,15 +53,8 @@ public class CadastroOng {
 	@Column(nullable = false)
 	private String password;
 	
-	@ManyToMany(mappedBy="Cadastro")
-	
-	public Long getId_ong() {
-		return id_ong;
-	}
-
-	public void setId_ong(Long id_ong) {
-		this.id_ong = id_ong;
-	}
+    @OneToMany(mappedBy = "Ong")
+    Set<Evento> Evento;
 
 	public String getNome() {
 		return nome;

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;;
 public class Main {
 
 	public static void main(String[] args) {
-		System.setProperty("server.servlet.context-path", "/ong");
+		System.setProperty("server.servlet.context-path", "/gerenciamento_ongs");
 		SpringApplication.run(Main.class, args);
 	}
 
