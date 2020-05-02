@@ -18,7 +18,6 @@ public class Participante {
 	public Participante() {
 	}
 	
-	
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)	
 	private Long id_participante;

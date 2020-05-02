@@ -21,12 +21,12 @@ public class Evento  {
     @ManyToOne
     @MapsId("id_participante")
     @JoinColumn(name = "id_participante")
-    Participante participante;
+    private Participante Participante;
  
     @ManyToOne
     @MapsId("id_ong")
     @JoinColumn(name = "id_ong")
-    Ong ong;
+    private Ong Ong;
 	
 	public Evento(String nome, Date data_hora, String descricao, String local, int quant_participante,
 			int espaco) {
