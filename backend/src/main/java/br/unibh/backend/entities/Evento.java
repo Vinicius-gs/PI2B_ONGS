@@ -28,7 +28,7 @@ public class Evento  {
     @JoinColumn(name = "id_ong")
     private Ong Ong;
 	
-	public Evento(String nome, Date data_hora, String descricao, String local, int quant_participante,
+	public Evento(String nome, String data_hora, String descricao, String local, int quant_participante,
 			int espaco) {
 		this.nome = nome;
 		this.data_hora = data_hora;
@@ -44,7 +44,7 @@ public class Evento  {
 	private String nome;
 	
 	@Column(name = "dataHora_evento",nullable = false)
-	private Date data_hora;
+	private String data_hora;
 	
 	@Column(name = "descricao_evento", length=255 , nullable = false)
 	private String descricao; 
@@ -68,11 +68,11 @@ public class Evento  {
 		this.nome = nome;
 	}
 
-	public Date getData_hora() {
+	public String getData_hora() {
 		return data_hora;
 	}
 
-	public void setData_hora(Date data_hora) {
+	public void setData_hora(String data_hora) {
 		this.data_hora = data_hora;
 	}
 

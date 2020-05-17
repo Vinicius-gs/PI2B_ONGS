@@ -5,7 +5,7 @@ import br.unibh.backend.entities.Ong;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
-@RepositoryRestResource(collectionResourceRel = "ONG", path = "ONG")
+@RepositoryRestResource(collectionResourceRel = "Ong", path = "Ong")
 public interface OngCRUD extends CrudRepository <Ong,Long>  {
 
 }

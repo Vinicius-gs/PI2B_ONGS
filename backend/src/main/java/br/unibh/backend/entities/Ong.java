@@ -16,41 +16,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_ong")
 public class Ong {
-
-	public Ong(String nome, String cnpj, String cpf, String endereco, String email,
-			String telefone, String password) {
-		this.nome = nome;
-		this.cnpj = cnpj;
-		this.cpf = cpf;
-		this.endereco = endereco;
-		this.email = email;
-		this.telefone = telefone;
-		this.password = password;
-	}
 	
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id_ong;
 
-	@Column(nullable = false, length = 255)
+	@Column(name = "nome_ong", length = 255)
 	private String nome;
 		
-	@Column(nullable = true)
+	@Column(name = "cnpj_ong")
 	private String cnpj;	
 	
-	@Column(nullable = false)
+	@Column(name = "cpf_ong")
 	private String cpf;	
 
-	@Column(nullable = false)
+	@Column(name = "endereco_ong")
 	private String endereco;
 	
-	@Column(nullable = false)
+	@Column(name = "email_ong")
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(name = "telefone_ong")
 	private String telefone;
 	
-	@Column(nullable = false)
+	@Column(name = "senha_ong")
 	private String password;
 	
     @OneToMany(mappedBy = "Ong")
