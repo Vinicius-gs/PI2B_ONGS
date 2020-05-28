@@ -40,7 +40,7 @@ public class Participante {
 	@Column(nullable = false)
 	private String password;
 	
-	@OneToMany(mappedBy = "Participante")
+	@OneToMany(mappedBy = "participante")
 	Set<Evento> Evento;
 	
 	public String getNome() {

@@ -1,11 +1,13 @@
 package br.unibh.backend.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -15,18 +17,21 @@ import javax.persistence.Table;
 @Table(name = "tb_evento")
 public class Evento  {
 	
-    @EmbeddedId
-    Eventokey id;
 	
-    @ManyToOne
-    @MapsId("id_participante")
+	public Evento()  {
+	}
+	
+	@Id 
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id_evento;
+
+	@ManyToOne
     @JoinColumn(name = "id_participante")
-    private Participante Participante;
+    private Participante participante;
  
     @ManyToOne
-    @MapsId("id_ong")
     @JoinColumn(name = "id_ong")
-    private Ong Ong;
+    private Ong ong;
 	
 	public Evento(String nome, String data_hora, String descricao, String local, int quant_participante,
 			int espaco) {
@@ -59,6 +64,15 @@ public class Evento  {
 	private int espaco; // Quantidade maxima de participantes no evento.
 
 	//Métodos Get e Set
+	
+	
+    public Long getId_evento() {
+		return id_evento;
+	}
+
+	public void setId_evento(Long id_evento) {
+		this.id_evento = id_evento;
+	}
 	
 	public String getNome() {
 		return nome;

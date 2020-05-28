@@ -17,6 +17,10 @@ import javax.persistence.Table;
 @Table(name = "tb_ong")
 public class Ong {
 	
+	public Ong () {
+		
+	}
+	
 	@Id 
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id_ong;
@@ -42,7 +46,7 @@ public class Ong {
 	@Column(name = "senha_ong")
 	private String password;
 	
-    @OneToMany(mappedBy = "Ong")
+    @OneToMany(mappedBy = "ong")
     Set<Evento> Evento;
 
 	public String getNome() {
